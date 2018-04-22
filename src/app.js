@@ -10,6 +10,8 @@ import createReducer from 'reducers'
 import createRoutes from 'routes'
 import registerServiceWorker from 'registerServiceWorker'
 
+import Navigator from 'components/Navigator'
+
 export const history = createBrowserHistory()
 
 const store = createStore(
@@ -24,6 +26,7 @@ export default class App extends Component {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <div>
+            <Navigator />
             {createRoutes()}
           </div>
         </ConnectedRouter>

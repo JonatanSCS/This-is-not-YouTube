@@ -1,24 +1,23 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import { Provider, connect } from 'react-redux'
-import thunk from 'redux-thunk'
-import { createStore, applyMiddleware } from 'redux'
-import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
-import { createBrowserHistory } from 'history'
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { Provider, connect } from "react-redux";
+import thunk from "redux-thunk";
+import { createStore, applyMiddleware } from "redux";
+import { ConnectedRouter, routerMiddleware } from "react-router-redux";
+import { createBrowserHistory } from "history";
 
-import createReducer from 'reducers'
-import createRoutes from 'routes'
-import registerServiceWorker from 'registerServiceWorker'
+import createReducer from "reducers";
+import registerServiceWorker from "registerServiceWorker";
 
-import Navigator from 'components/Navigator'
+import Navigator from "components/Navigator";
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 
 const store = createStore(
   createReducer(),
   applyMiddleware(thunk),
   applyMiddleware(routerMiddleware(history))
-)
+);
 
 export default class App extends Component {
   render() {
@@ -27,20 +26,19 @@ export default class App extends Component {
         <ConnectedRouter history={history}>
           <div>
             <Navigator />
-            {createRoutes()}
           </div>
         </ConnectedRouter>
       </Provider>
-    )
+    );
   }
 }
 
-const ConnectedApp = connect(null, null)(App)
+const ConnectedApp = connect(null, null)(App);
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== "test") {
   ReactDOM.render(
     <ConnectedApp store={store} />,
-    document.getElementById('YouTube')
-  )
-  registerServiceWorker()
+    document.getElementById("YouTube")
+  );
+  registerServiceWorker();
 }

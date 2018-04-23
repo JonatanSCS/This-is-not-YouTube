@@ -1,12 +1,16 @@
 #Navigator {
   .Navbar {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
       align-items: center;
       background: white;
       box-shadow: 1px 2px 5px rgba(0,0,0,.05);
+      box-sizing: border-box;
       display: flex;
       height: 56px;
       padding: 0 16px;
       position: absolute;
+      top: 0;
       width: 100%;
       z-index: 2;
       &__SearchContainer {
@@ -48,7 +52,6 @@
           border-radius: 0 2px 2px 0;
           border: 1px solid #ccc;
           cursor: pointer;
-          outline: none;
           width: 65px;
           i {
             color: #333;
@@ -107,5 +110,17 @@
           text-transform: uppercase;
         }
       }
+  }
+  .Container {
+    display: flex;
+    &__Scene {
+      display: flex;
+      justify-content: center;
+      margin-top: 56px;
+      width: 100%;
+      div {
+        width: 100%;
+      }
+    }
   }
 }

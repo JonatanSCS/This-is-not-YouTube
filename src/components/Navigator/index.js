@@ -74,7 +74,13 @@ export default class Navigator extends BaseComponent {
             isVisible={this.state.sidebar.isVisible}
             toggleSidebar={this._toggleSideBar}
           />
-          <div className="Container__Scene">{createRoutes()}</div>
+          <div
+            className={`Container__Scene ${this.state.sidebar.isVisible
+              ? "visible"
+              : ""}`}
+          >
+            {createRoutes()}
+          </div>
         </div>
       </div>
     );

@@ -2,9 +2,9 @@
   background: #F5F5F5;
   height: 100%;
   left: 0;
+  overflow-x: hidden;
   overflow-y: scroll;
-  overflow: hidden;
-  position: relative;
+  position: absolute;
   top: 0;
   width: 240px;
   z-index: 1;
@@ -32,6 +32,14 @@
     }
     ul {
       li {
+        .activeNav {
+          font-weight: 500;
+          .Icon {
+            i {
+              color: red;
+            }
+          }
+        }
         a, button {
           align-items: center;
           color: #000;

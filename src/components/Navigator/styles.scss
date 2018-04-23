@@ -113,6 +113,9 @@
   }
   .Container {
     display: flex;
+    .visible {
+      margin-left: 240px;
+    }
     &__Scene {
       display: flex;
       justify-content: center;

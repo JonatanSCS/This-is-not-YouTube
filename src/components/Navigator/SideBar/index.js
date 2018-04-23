@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { reverse } from "routes";
 
@@ -17,28 +17,34 @@ export default function SideBar(props) {
         <div className="Main Section">
           <ul>
             <li>
-              <Link to={reverse("home")}>
+              <NavLink to={reverse("home")} activeClassName="activeNav" exact>
                 <div className="Icon">
                   <i className="fas fa-home" />
                 </div>
                 <span>Home</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={reverse("feed:trending")}>
+              <NavLink
+                to={reverse("feed:trending")}
+                activeClassName="activeNav"
+              >
                 <div className="Icon">
                   <i className="fas fa-fire" />
                 </div>
                 <span>Trending</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={reverse("feed:subscriptions")}>
+              <NavLink
+                to={reverse("feed:subscriptions")}
+                activeClassName="activeNav"
+              >
                 <div className="Icon">
                   <i className="fab fa-youtube" />
                 </div>
                 <span>Subscriptions</span>
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -46,28 +52,34 @@ export default function SideBar(props) {
           <p className="Section__Title">Library</p>
           <ul>
             <li>
-              <Link to={reverse("feed:history")}>
+              <NavLink to={reverse("feed:history")} activeClassName="activeNav">
                 <div className="Icon">
                   <i className="fas fa-history" />
                 </div>
                 <span>History</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={reverse("playlist", { playlist: "wl" })}>
+              <NavLink
+                to={reverse("playlist", { playlist: "wl" })}
+                activeClassName="activeNav"
+              >
                 <div className="Icon">
                   <i className="fas fa-clock" />
                 </div>
                 <span>Watch Later</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={reverse("playlist", { playlist: "lv" })}>
+              <NavLink
+                to={reverse("playlist", { playlist: "lv" })}
+                activeClassName="activeNav"
+              >
                 <div className="Icon">
                   <i className="fas fa-thumbs-up" />
                 </div>
                 <span>Liked videos</span>
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -75,20 +87,20 @@ export default function SideBar(props) {
           <p className="Section__Title">More from youtube</p>
           <ul>
             <li>
-              <Link to={reverse("red")}>
+              <NavLink to={reverse("red")} activeClassName="activeNav">
                 <div className="Icon">
                   <i className="fab fa-youtube" />
                 </div>
                 <span>YouTube Red</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={reverse("channel")}>
+              <NavLink to={reverse("channel")} activeClassName="activeNav">
                 <div className="Icon">
                   <i className="fas fa-film-alt" />
                 </div>
                 <span>YouTube Movies</span>
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -98,12 +110,12 @@ export default function SideBar(props) {
         <div className="Section big-icons">
           <ul>
             <li>
-              <Link to={reverse("account")}>
+              <NavLink to={reverse("account")} activeClassName="activeNav">
                 <div className="Icon">
                   <i className="fas fa-cog" />
                 </div>
                 <span>Settings</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
               <button>

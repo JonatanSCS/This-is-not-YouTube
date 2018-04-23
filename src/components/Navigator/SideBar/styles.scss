@@ -1,0 +1,88 @@
+#SideBar {
+  background: #F5F5F5;
+  height: 100%;
+  left: 0;
+  overflow-y: scroll;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 240px;
+  z-index: 1;
+  .Toggle {
+    background: white;
+    height: 48px;
+    padding: 8px 0 0 16px;
+  }
+  .big-icons {
+    i {
+      font-size: 20px;
+    }
+  }
+  .Section {
+    border-bottom: 1px solid rgba(204,204,204, .2);
+    padding: 8px 0;
+    &__Title {
+      color: #6D6D6D;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: .007px;
+      margin: 0;
+      padding: 8px 24px;
+      text-transform: uppercase;
+    }
+    ul {
+      li {
+        align-items: center;
+        display: flex;
+        height: 40px;
+        padding: 0 24px;
+        &:hover {
+          background: #EBEBEB;
+          cursor: pointer;
+        }
+        .Icon {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          margin-right: 27px;
+          width: 24px;
+          i {
+            color: #A0A0A0;
+            position: relative;
+          }
+        }
+        span {
+          font-size: 14px;
+          max-width: 117px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+  .Main {
+    padding: 12px 0;
+  }
+  .Terms {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 24px 27px 0;
+      li {
+        color: #888888;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 25px;
+        margin-right: 8px;
+        white-space: nowrap;
+      }
+    }
+    p {
+      color: #888888;
+      font-size: 13px;
+      margin: 0;
+      padding: 36px 27px 24px 27px;
+    }
+  }
+}

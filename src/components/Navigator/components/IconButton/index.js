@@ -5,12 +5,13 @@ import './styles.scss'
 
 export default function IconButton(props) {
   return (
-    <button id="IconButton">
+    <button id="IconButton" onClick={props.onClick}>
       <i className={props.iconClass}></i>
     </button>
   )
 }
 
 IconButton.propTypes = {
-  iconClass: PropTypes.string.isRequired
+  iconClass: PropTypes.string.isRequired,
+  onClick: PropTypes.func
 }

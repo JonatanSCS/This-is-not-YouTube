@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
+    <meta name="google-signin-client_id" content="1007222126926-m8qeggtrec3gbe80t7i96mp4p090hsp7.apps.googleusercontent.com">
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -23,6 +24,12 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>YouTube</title>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script type="text/javascript">
+      window.gapi.load('auth2', function() {
+        window.gapi.auth2.init()
+      })
+    </script>
     <style media="screen">
       * {
         font-family: 'Roboto', 'Noto', sans-serif;

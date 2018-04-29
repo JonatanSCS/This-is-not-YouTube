@@ -153,4 +153,7 @@ button {
   outline: none;
   cursor: pointer;
 }
+p {
+  margin: 0;
+}
 /*# sourceMappingURL=normalize.min.css.map */

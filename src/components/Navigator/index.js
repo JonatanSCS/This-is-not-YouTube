@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+import GoogleLogin from "react-google-login";
+
 import BaseComponent from "utils/BaseComponent";
 
 import createRoutes from "routes";
@@ -7,20 +10,44 @@ import SideBar from "./SideBar";
 
 import IconButon from "./components/IconButton";
 import SideBarToggle from "./components/SideBarToggle";
+import AccountMenu from "./components/AccountMenu";
+
+import { updateUserData } from "reducers/user/actions";
 
 import "./styles.scss";
 
-export default class Navigator extends BaseComponent {
+const singInButtonStyles = {
+  background: "none",
+  color: "#FC2230",
+  cursor: "pointer",
+  fontSize: "14px",
+  margin: "0 0 0 15px",
+  padding: "8px",
+  textTransform: "uppercase",
+  width: "auto",
+  fontWeight: "500",
+  fontFamily: "inherit"
+};
+
+export class Navigator extends BaseComponent {
   constructor() {
     super();
 
     this.state = {
       sidebar: {
         isVisible: true
+      },
+      accountMenu: {
+        isVisible: true
       }
     };
 
-    this._bind("_handleSearchFormSubmit", "_toggleSideBar");
+    this._bind(
+      "_handleSearchFormSubmit",
+      "_toggleSideBar",
+      "_responseGoogle",
+      "_toggleAccountMenu"
+    );
   }
 
   _handleSearchFormSubmit(e) {
@@ -36,6 +63,46 @@ export default class Navigator extends BaseComponent {
         }
       };
     });
+  }
+
+  _toggleAccountMenu() {
+    this.setState(prevState => {
+      return {
+        accountMenu: {
+          isVisible: !prevState.accountMenu.isVisible
+        }
+      };
+    });
+  }
+
+  _responseGoogle({ profileObj }) {
+    this.props.updateUserData(profileObj);
+  }
+
+  _renderProfileData() {
+    if (this.props.isLoading) {
+      console.log("Cargando loader");
+    } else {
+      const backgroundImage = {
+        backgroundImage: `url(${this.props.user.toJS().imageUrl})`
+      };
+      return !!this.props.user.size ? (
+        <div
+          id="NavigatorUserImage"
+          style={backgroundImage}
+          onClick={this._toggleAccountMenu}
+        />
+      ) : (
+        <GoogleLogin
+          id="LoginButton"
+          clientId="1007222126926-m8qeggtrec3gbe80t7i96mp4p090hsp7.apps.googleusercontent.com"
+          buttonText="Sign In"
+          onSuccess={this._responseGoogle}
+          onFailure={this._responseGoogle}
+          style={singInButtonStyles}
+        />
+      );
+    }
   }
 
   render() {
@@ -66,7 +133,8 @@ export default class Navigator extends BaseComponent {
                 <IconButon iconClass="far fa-ellipsis-v" />
               </li>
             </ul>
-            <p>Iniciar Sesión</p>
+            {this._renderProfileData()}
+            {this.state.accountMenu.isVisible && <AccountMenu />}
           </div>
         </div>
         <div className="Container">
@@ -86,3 +154,17 @@ export default class Navigator extends BaseComponent {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user.get("user")
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateUserData: user => dispatch(updateUserData(user))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigator);

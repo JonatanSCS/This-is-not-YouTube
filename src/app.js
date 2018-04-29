@@ -11,6 +11,8 @@ import registerServiceWorker from "registerServiceWorker";
 
 import Navigator from "components/Navigator";
 
+import { updateUserData } from "reducers/user/actions";
+
 export const history = createBrowserHistory();
 
 const store = createStore(
@@ -19,13 +21,33 @@ const store = createStore(
   applyMiddleware(routerMiddleware(history))
 );
 
+// const profile = auth2.currentUser.get().getBasicProfile()
+// console.log(profile.getImageUrl());
+
 export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true
+    };
+  }
+
+  componentDidMount() {
+    window.gapi.load("auth2", () => {
+      window.gapi.auth2.init().then(auth2 => {
+        if (auth2.isSignedIn.get())
+          this.props.updateUserData(auth2.currentUser.get().getBasicProfile());
+        this.setState({ isLoading: false });
+      });
+    });
+  }
+
   render() {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <div>
-            <Navigator />
+            <Navigator isLoading={this.state.isLoading} />
           </div>
         </ConnectedRouter>
       </Provider>
@@ -33,7 +55,13 @@ export default class App extends Component {
   }
 }
 
-const ConnectedApp = connect(null, null)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    updateUserData: user => dispatch(updateUserData(user))
+  };
+};
+
+const ConnectedApp = connect(null, mapDispatchToProps)(App);
 
 if (process.env.NODE_ENV !== "test") {
   ReactDOM.render(
